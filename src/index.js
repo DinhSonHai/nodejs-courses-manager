@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 
 const route = require('./routes');
@@ -25,6 +26,8 @@ app.use(
 //Middleware xử lý dữ liệu gửi từ client lên server bằng XMLHttpRequest, fetch, axios, ajax (jquery)
 app.use(express.json());
 
+app.use(methodOverride('_method'));
+
 //HTTP logger
 // app.use(morgan('combined'));
 
@@ -33,6 +36,9 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        },
     }),
 );
 app.set('view engine', 'hbs');
