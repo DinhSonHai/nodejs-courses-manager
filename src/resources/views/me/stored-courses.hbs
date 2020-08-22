@@ -131,20 +131,20 @@
           }
         }
 
-        //btnCheckBoxSubmit.click(function(e) {
-          //e.preventDefault();
-          //var isSubmittable = !$(this).hasClass('disabled');
-          //if (isSubmittable) {
-            //containerForm.submit();
-          //}
-        //})
-
-        //Sự kiện submit
-        btnCheckBoxSubmit.on('submit', function(e) {
+        btnCheckBoxSubmit.click(function(e) {
+          e.preventDefault();
           var isSubmittable = !$(this).hasClass('disabled');
-          if (!isSubmittable) {
-            e.preventDefault();
+          if (isSubmittable && containerForm.reportValidity()) {
+            containerForm.submit();
           }
         })
+
+        //Sự kiện submit
+        //btnCheckBoxSubmit.on('submit', function(e) {
+          //var isSubmittable = !$(this).hasClass('disabled');
+          //if (!isSubmittable) {
+            //e.preventDefault();
+          //}
+        //})
     });
 </script>
