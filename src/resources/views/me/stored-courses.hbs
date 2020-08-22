@@ -2,10 +2,31 @@
   <div>
     <h3>Khóa học của tôi</h3>
     <a href="/me/trash/courses">Thùng rác ({{deletedCount}})</a>
+
+    <div class="mt-4 d-flex align-items-center">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Chọn tất cả
+        </label>
+      </div>
+
+      <select class="form-control form-control-sm checkbox-select-all-options" id="">
+        <option>-- Hành động --</option>
+        <option value="delete">Xóa</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+
+      <button class="btn btn-primary btn-sm disabled">Áp dụng</button>
+
+    </div>
   </div>
     <table class="table mt-4">
         <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">#</th>
                 <th scope="col">Tên khóa học</th>
                 <th scope="col">Thời gian tạo</th>
@@ -16,6 +37,11 @@
         <tbody>
             {{#each courses}}
                 <tr>
+                    <td>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
+                      </div>
+                    </td>
                     <th scope="row">{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.createdAt}}</td>
