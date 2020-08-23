@@ -35,6 +35,11 @@
         <tbody>
             {{#each courses}}
                 <tr>
+                    <td>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
+                      </div>
+                    </td>
                     <th scope="row">{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.deletedAt}}</td>
@@ -88,8 +93,12 @@
         var courseId;
         var deleteForm = document.forms['delete-course-form'];
         var restoreForm = document.forms['restore-course-form'];
+        var containerForm = document.forms['container-form'];
         var btnDeleteCourse = document.getElementById('btn-delete-course');
         var btnRestore = $('.btn-restore');
+        var btnCheckAll = $('#checkbox-all');
+        var courseItemCheckBox = $('input[name="courseIds[]"]');
+        var btnCheckBoxSubmit = $('.btn-check-box-submit');
 
         $('#delete-course-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
@@ -107,5 +116,36 @@
             restoreForm.action = `/courses/${courseId}/restore?_method=PATCH`;
             restoreForm.submit();
         })
+
+        btnCheckAll.change(function() {
+          var isCheckedAll = $(this).prop('checked');
+          courseItemCheckBox.prop('checked', isCheckedAll);
+          enableSubmitButton()
+        });
+
+        courseItemCheckBox.change(function() {
+          var isCheckedAll = courseItemCheckBox.length === $('input[name="courseIds[]"]:checked').length;
+          btnCheckAll.prop('checked', isCheckedAll);
+          enableSubmitButton()
+        });
+
+        function enableSubmitButton() {
+          var checkedCount = $('input[name="courseIds[]"]:checked').length;
+          if (checkedCount > 0) {
+            btnCheckBoxSubmit.removeClass('disabled');
+          }
+          else {
+            btnCheckBoxSubmit.addClass('disabled');
+          }
+        }
+
+        btnCheckBoxSubmit.click(function(e) {
+          e.preventDefault();
+          var isSubmittable = !$(this).hasClass('disabled');
+          if (isSubmittable && containerForm.reportValidity()) {
+            containerForm.submit();
+          }
+        })
+        
     });
 </script>
