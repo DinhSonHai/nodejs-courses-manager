@@ -23,6 +23,11 @@ class SiteController {
     login(req, res) {
         res.render('login');
     }
+
+    //[GET] /register
+    register(req, res) {
+        res.render('register');
+    }
 }
 
 module.exports = new SiteController();
