@@ -13,6 +13,11 @@ class NewsController {
     create(req, res) {
         res.render('news/create');
     }
+
+    //[POST] /news/store
+    store(req, res) {
+        res.send('News created');
+    }
 }
 
 module.exports = new NewsController();
