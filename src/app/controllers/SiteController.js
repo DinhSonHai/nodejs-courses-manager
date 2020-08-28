@@ -9,9 +9,10 @@ class SiteController {
                 res.render('home', {
                     courses: multipleMongooseToObject(courses),
                 });
+                //res.json(multipleMongooseToObject(courses));
             })
             .catch(next);
-        //res.render('home');
+        console.log(req.cookies.test);
     }
 
     //[GET] /search

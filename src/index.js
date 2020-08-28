@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -13,6 +14,8 @@ db.connect();
 
 const app = express();
 const port = 3000;
+
+app.use(cookieParser());
 
 //Với các file tĩnh sẽ đi theo đường dẫn này
 app.use(express.static(path.join(__dirname, 'public')));
