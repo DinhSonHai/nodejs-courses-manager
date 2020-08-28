@@ -21,6 +21,9 @@ class CourseController {
 
     //[POST] /courses/store
     store(req, res, next) {
+        console.log(req.body);
+        req.body.avatar = `\/${req.file.path.split('\\').slice(2).join('/')}`;
+        console.log(req.file.path.split('\\').slice(2).join('/'));
         req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/mqdefault.jpg`;
         const course = new Course(req.body);
         course

@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const multer = require('multer');
+const upload = multer({ dest: './src/public/uploads/' });
+
 const courseController = require('../app/controllers/CourseController');
 
 router.get('/create', courseController.create);
-router.post('/store', courseController.store);
+router.post('/store', upload.single('avatar'), courseController.store);
 router.get('/:id/edit', courseController.edit);
 router.post('/handle-form-actions', courseController.handleFormActions);
 router.post(

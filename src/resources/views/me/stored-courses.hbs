@@ -27,7 +27,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Tên khóa học</th>
                 <th scope="col">Thời gian tạo</th>
-                <th scope="col">Thời gian chỉnh sửa</th>
+                <th scope="col">Avatar</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
                     <th scope="row">{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.createdAt}}</td>
-                    <td>{{this.updatedAt}}</td>
+                    <td><img src="{{this.avatar}}" width="64px" alt=""></td>
                     <td>
                         <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                         <a href="" class="btn btn-link" data-id="{{this._id}}" data-toggle="modal" data-target="#delete-course-modal">Xóa</a>
