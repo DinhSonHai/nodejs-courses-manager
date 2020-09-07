@@ -6,6 +6,8 @@ const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
+
 const route = require('./routes');
 const db = require('./config/db');
 
@@ -31,6 +33,9 @@ app.use(
 app.use(express.json());
 
 app.use(methodOverride('_method'));
+
+//Custom Middlewares
+app.use(SortMiddleware);
 
 //HTTP logger
 // app.use(morgan('combined'));
