@@ -7,8 +7,9 @@ class MeController {
         // res.json(res.locals._sort);
         let courseQuery = Courses.find({});
         if (req.query.hasOwnProperty('_sort')) {
+            const isValid = ['asc', 'desc'].includes(req.query.type);
             courseQuery = courseQuery.sort({
-                [req.query.column]: req.query.type,
+                [req.query.column]: isValid ? req.query.type : 'desc',
             });
         }
         Promise.all([courseQuery, Courses.countDocumentsDeleted()])
