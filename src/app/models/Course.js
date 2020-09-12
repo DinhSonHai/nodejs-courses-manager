@@ -33,6 +33,7 @@ Course.query.sortable = function (req) {
 };
 
 mongoose.plugin(slug);
+Course.plugin(AutoIncrement);
 Course.plugin(mongooseDelete, {
     deletedAt: true,
     overrideMethods: 'all',

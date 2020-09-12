@@ -4,12 +4,12 @@
     <a href="/me/trash/courses">Thùng rác ({{deletedCount}})</a>
 
     <div class="mt-4 d-flex align-items-center">
-      <div class="form-check">
+      {{!-- <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
         <label class="form-check-label" for="checkbox-all">
           Chọn tất cả
         </label>
-      </div>
+      </div> --}}
 
       <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
         <option value="">-- Hành động --</option>
@@ -23,8 +23,18 @@
     <table class="table mt-4">
         <thead>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">#</th>
+                <th scope="col">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">
+                      Chọn tất cả
+                    </label>
+                  </div>
+                </th>
+                <th scope="col">
+                  Id
+                  {{{ sortable '_id' _sort }}}
+                  </th>
                 <th scope="col">
                   Tên khóa học
                   {{{ sortable 'name' _sort }}}
@@ -45,7 +55,8 @@
                         <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
                       </div>
                     </td>
-                    <th scope="row">{{sum @index 1}}</th>
+                    {{!-- <th scope="row">{{sum a còng index 1}}</th> --}}
+                    <th scope="row">{{this._id}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.createdAt}}</td>
                     <td><img src="{{this.avatar}}" width="64px" alt=""></td>
